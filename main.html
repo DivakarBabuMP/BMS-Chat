@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMP</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background: #efefef;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #dc143c;
+    padding: 5px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+}
+
+.logo {
+    width: 150px;
+    margin-right: 45px;
+}
+
+.navleft,
+.navright {
+    display: flex;
+    align-items: center;
+}
+
+.navleft ul li {
+    list-style: none;
+    display: inline-block;
+}
+
+.navleft ul li img {
+    width: 40px;
+    margin: 0 10px;
+}
+
+.nav-icon img {
+    width: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.nav-icon {
+    margin-left: 30px;
+}
+
+.searchbox {
+    background: rgb(228, 233, 235);
+    width: 350px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.searchbox img {
+    width: 18px;
+}
+
+.searchbox input {
+    width: 100%;
+    background: transparent;
+    padding: 10px;
+    outline: none;
+    border: 0;
+}
+
+.online {
+    position: relative;
+
+}
+
+.online::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background-color: green;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 5%;
+
+}
+
+.leftsidebar {
+
+    flex-basis: 25%;
+    position: sticky;
+    top: 70px;
+    align-self: flex-start;
+
+}
+
+.rightsidebar {
+
+    flex-basis: 25%;
+    position: sticky;
+    top: 70px;
+    align-self: flex-start;
+    background: white;
+    padding: 20px;
+    border-radius: 4px;
+    color: #626262;
+
+}
+
+.maincontent {
+    flex-basis: 47%;
+}
+
+.implinks a,
+.shortcutlinks a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    color: #626262;
+    width: fit-content;
+}
+
+.implinks a img {
+    width: 25px;
+    margin-right: 15px;
+}
+
+.implinks .seemore {
+    color: #dc143c;
+}
+
+.implinks {
+    border-bottom: 1px solid #ccc;
+}
+
+.shortcutlinks a img {
+    width: 40px;
+    border-radius: 4px;
+    margin-right: 15px;
+}
+
+.shortcutlinks p {
+    margin: 25px 0;
+    color: #1d1c1c;
+    font-weight: 500;
+    font-size: larger;
+}
+
+.sidebartitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.sidebartitle h4 {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+
+.rightsidebar h4 {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.sidebartitle a {
+    text-decoration: none;
+    color: #dc143c;
+    font-size: 12px;
+}
+
+.event {
+    display: flex;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.leftevent {
+    border-radius: 10px;
+    height: 65px;
+    width: 65px;
+    margin-right: 15px;
+    padding-top: 10px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.event p {
+    font-size: 12px;
+}
+
+.event a {
+    font-size: 12px;
+    text-decoration: none;
+    color: #dc143c;
+}
+
+.leftevent span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #dc143c;
+    color: #fff;
+    font-size: 10px;
+    padding: 4px 0;
+}
+
+.ads {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.onlinelist {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.onlinelist .online img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.onlinelist .online {
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.onlinelist .online::after {
+    top: unset;
+    bottom: 5;
+}
+
+.storygallery {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+}
+
+.story {
+    flex-basis: 18%;
+    padding-top: 32%;
+    position: relative;
+
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.story img {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    top: 10px;
+    left: 10px;
+    border: 3px solid #dc143c;
+}
+
+.story p {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+
+}
+
+.story1 {
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5)), url(https://scontent.fblr20-2.fna.fbcdn.net/v/t39.30808-6/370437261_122117323532008969_2963051036196444200_n.jpg?stp=dst-jpg_p843x403&_nc_cat=102&ccb=1-7&_nc_sid=730e14&_nc_ohc=46fZkp1YZ88AX8_Uby6&_nc_ht=scontent.fblr20-2.fna&oh=00_AfBeWs7z7EqW9ICZ8Vhe7qhwvVZWrqgr5EEyr8pgbGvE8w&oe=64F017CF);
+}
+
+.story2 {
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5)), url(images/status-2.png);
+}
+
+.story3 {
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5)), url(https://scontent.fblr20-3.fna.fbcdn.net/v/t39.30808-6/370483529_122117329478008969_8804139262116871219_n.jpg?stp=dst-jpg_p843x403&_nc_cat=101&ccb=1-7&_nc_sid=730e14&_nc_ohc=B3sPzGC5LOQAX9Xxxwu&_nc_ht=scontent.fblr20-3.fna&oh=00_AfAz7oHFjL2oerQ46L45Dm7WN9tsfjM6T936jXAXim7tog&oe=64EF4FA3);
+}
+
+.story4 {
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5)), url(images/status-4.png);
+}
+
+.story5 {
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5)), url(images/status-5.png);
+}
+
+.story.story1 img {
+    top: unset;
+    left: 50%;
+    bottom: 40px;
+    transform: translateX(-50%);
+    border: 0;
+    width: 35px;
+}
+
+.writepostcontainer {
+    width: 100%;
+    background: #fff;
+    border-radius: 6%;
+    padding: 20px;
+    color: #626262;
+}
+
+.userprofile {
+    display: flex;
+    align-items: center;
+}
+
+.userprofile img {
+    width: 45px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.userprofile p {
+    margin: -5px;
+    font-weight: 500;
+    color: #626262;
+}
+
+.userprofile small {
+    font-size: 12px;
+}
+
+.postinputcontainer {
+    padding-left: 55px;
+    padding-top: 20px;
+}
+
+.postinputcontainer textarea {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
+    resize: none;
+}
+
+.addpostlinks {
+    display: flex;
+    margin-top: 10px;
+}
+
+.addpostlinks a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: #626262;
+    margin-right: 30px;
+    font-size: 13px;
+}
+
+.addpostlinks a img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+.post-container {
+    width: 100%;
+    background: #fff;
+    border-radius: 6px;
+    padding: 20px;
+    color: #626262;
+    margin: 20px 0;
+}
+
+.userprofile span {
+    font-size: 13px;
+    color: #9a9a9a;
+}
+
+.post-text {
+    color: #9a9a9a;
+    margin: 15px 0;
+    font-size: 15px;
+}
+
+.post-text span {
+    color: #626262;
+    font-weight: 500;
+}
+
+.post-text a {
+    color: #dc143c;
+    text-decoration: none;
+}
+
+.post-img {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.post-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.activity-icons div img {
+    width: 25px;
+    margin-right: 6px;
+}
+
+.activity-icons div {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.postprofileicon {
+    display: flex;
+    align-items: center;
+}
+
+.postprofileicon img {
+    width: 20px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.post-row a {
+    color: #9a9a9a;
+}
+
+.load-more-btn {
+    display: block;
+    margin: auto;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #9a9a9a;
+    color: #626262;
+    background: transparent;
+    border-radius: 4;
+}
+
+.footer {
+    text-align: center;
+    color: #9a9a9a;
+    padding: 10px 0 20px;
+    font-size: 13px;
+}
+
+.settings-menu {
+    position: absolute;
+    width: 90%;
+    max-width: 350px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    overflow: hidden;
+    top: 108%;
+    right: 5%;
+    max-height: 0;
+    transition: max-height 0.3s;
+}
+
+.settings-menu-height {
+    max-height: 450px;
+}
+
+.userprofile a {
+    font-size: 12px;
+    color: #dc143c;
+    text-decoration: none;
+}
+
+.settings-menu-inner {
+    padding: 20px;
+}
+
+.settings-menu hr {
+    border: 0;
+    height: 1px;
+    background: #9a9a9a;
+    margin: 15px 0;
+}
+
+.settings-links {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.settings-links .settings-icon {
+    width: 38px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.settings-links a {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #626262;
+}
+    </style>
+    <script src="https://kit.fontawesome.com/052747d1e0.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="navleft">
+            <img src="https://scontent.fblr20-1.fna.fbcdn.net/v/t39.30808-6/369785513_122117427122008969_4947687933265750137_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=730e14&_nc_ohc=Rt3PeCAxtqoAX9SE4JS&_nc_ht=scontent.fblr20-1.fna&oh=00_AfCCahuwwjM78KUta1WEcUoYuIJbrPIgH-1HeTfZOkAD4A&oe=64EF4470" class="logo">
+            <ul>
+                <li><img src="https://www.iconsdb.com/icons/preview/white/bell-2-xxl.png" height="42" width="42"></li>
+                <li><img src="https://www.iconsdb.com/icons/preview/white/inbox-7-xxl.png" height="42" width="42"></li>
+                <li><img src="https://www.iconsdb.com/icons/preview/white/slr-camera-xxl.png" height="42" width="42"></li>
+            </ul>
+        </div>
+        <div class="navright">
+            <div class="searchbox">
+                <img src="https://www.iconsdb.com/icons/preview/color/DC143C/search-3-xxl.png">
+                <input type="text" placeholder="Search">
+            </div>
+            <div class="nav-icon online" onclick="settingsMenuToggle()">
+                <img src="https://www.thetechedvocate.org/wp-content/uploads/2023/05/incognito.png" alt="">
+            </div>
+            <!----------------settings menu -------------------->
+        </div>
+        <div class="settings-menu">
+            <div class="settings-menu-inner">
+                <div class="userprofile">
+                    <img src="https://www.thetechedvocate.org/wp-content/uploads/2023/05/incognito.png">
+                    <div>
+                        <p>Dheemanth Madaiah</p>
+                        <a href="#">See your profile</a>
+
+                    </div>
+                </div>
+                <hr>
+                <div class="userprofile">
+                    <img src="https://www.iconsdb.com/icons/preview/color/DC143C/error-3-xxl.png">
+                    <div>
+                        <p>Any corrections?</p>
+                        <a href="#">Ma'am we need full marks 😂</a>
+
+                    </div>
+                </div>
+                <hr>
+                <div class="settings-links">
+                    <img src="https://www.iconsdb.com/icons/preview/color/DC143C/settings-4-xxl.png" class="settings-icon">
+                    <a href="#">Settings & Privacy <img src="https://img.icons8.com/?size=512&id=60671&format=png" width="10px"></a>
+                </div>
+                <div class="settings-links">
+                    <img src="https://www.iconsdb.com/icons/preview/color/DC143C/help-xxl.png" class="settings-icon">
+                    <a href="#">Help & Support <img src="https://img.icons8.com/?size=512&id=60671&format=png" width="10px"></a>
+                </div>
+                <div class="settings-links">
+                    <img src="https://www.iconsdb.com/icons/preview/color/DC143C/moon-4-xxl.png" class="settings-icon">
+                    <a href="#">Display and Accessibility <img src="https://img.icons8.com/?size=512&id=60671&format=png" width="10px"></a>
+                </div>
+                <div class="settings-links">
+                    <img src="https://www.iconsdb.com/icons/preview/color/DC143C/logout-xxl.png" class="settings-icon">
+                    <a href="#">Logout <img src="https://img.icons8.com/?size=512&id=60671&format=png" width="10px"></a>
+                </div>
+
+
+            </div>
+
+        </div>
+    </nav>
+
+    <div class="container">
+        <!----------------leftsidebar -------------------->
+        <div class="leftsidebar">
+            <div class="implinks">
+                <a href="#"><img src="https://www.iconsdb.com/icons/preview/color/DC143C/newspaper-10-xxl.png">Latest News</a>
+                <a href="#"><img src="https://www.iconsdb.com/icons/preview/color/DC143C/group-xxl.png" >Friends</a>
+                <a href="#"><img src="https://previews.123rf.com/images/siamimages/siamimages1602/siamimages160202284/52368837-human-action-poses-icon-illustration-design.jpg">Group</a>
+                <a href="#"><img src="https://www.iconsdb.com/icons/preview/color/DC143C/cart-15-xxl.png">Market Place</a>
+                <a href="#"><img src="https://www.iconsdb.com/icons/preview/color/DC143C/video-5-xxl.png">Series</a>
+                <a href="#" class="seemore">See More</a>
+            </div>
+
+            <div class="shortcutlinks">
+                <p>Your Shortcuts</p>
+                <a href="#"><img src="https://static.langimg.com/photo/imgsize-25110,msid-100240430/vijaykarnataka.jpg" >Pradeep Eshwar MLA</a>
+                <a href="#"><img src="https://yt3.googleusercontent.com/ytc/AOPolaTs6ebYSB78qonK8zkc0-KpINIhKuA2hIzROBLAVQ=s900-c-k-c0x00ffffff-no-rj" alt="">RVCJ Media</a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/87/BMS_College_of_Engineering.svg/330px-BMS_College_of_Engineering.svg.png" alt="">BMSCE Confessions'26</a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Indian_Space_Research_Organisation_Logo.svg/300px-Indian_Space_Research_Organisation_Logo.svg.png" alt="">Indian Space Research Organisation</a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2a/Royal_Challengers_Bangalore_2020.svg/800px-Royal_Challengers_Bangalore_2020.svg.png" alt="">Royal Challengers Bengaluru</a>
+            </div>
+        </div>
+        <!----------------main content-------------------->
+        <div class="maincontent">
+
+            <div class="storygallery">
+                <div class="story story1">
+                    <img src="https://www.iconsdb.com/icons/preview/color/DC143C/plus-4-xxl.png">
+                    <p>Post Story</p>
+                </div>
+                <div class="story story2">
+                    <img src="https://scontent.fblr20-2.fna.fbcdn.net/v/t39.30808-6/369794448_122117319842008969_903848144150148068_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=730e14&_nc_ohc=QYnaYvGolA0AX-_mYzv&_nc_ht=scontent.fblr20-2.fna&oh=00_AfB3SP7thYWUnMArHntKTMns5osLGY6KKln6WwCPzLjVUQ&oe=64EE5AAC" >
+                    <p>Name 1</p>
+                </div>
+                <div class="story story3">
+                    <img src="https://scontent.fblr20-3.fna.fbcdn.net/v/t39.30808-6/370483529_122117329478008969_8804139262116871219_n.jpg?stp=dst-jpg_p843x403&_nc_cat=101&ccb=1-7&_nc_sid=730e14&_nc_ohc=B3sPzGC5LOQAX9Xxxwu&_nc_ht=scontent.fblr20-3.fna&oh=00_AfAz7oHFjL2oerQ46L45Dm7WN9tsfjM6T936jXAXim7tog&oe=64EF4FA3">
+                    <p>Name 2</p>
+                </div>
+                <div class="story story4">
+                    <img src="images/member-3.png">
+                    <p>Name 3</p>
+                </div>
+                <div class="story story5">
+                    <img src="images/member-4.png">
+                    <p>Name 4</p>
+                </div>
+            </div>
+
+            <div class="writepostcontainer">
+
+                <div class="userprofile">
+                    <img src="https://www.thetechedvocate.org/wp-content/uploads/2023/05/incognito.png">
+                    <div>
+                        <p>Dheemanth Divakar</p>
+                        <small>Public <i class="fa-solid fa-caret-down"></i></small>
+                    </div>
+                </div>
+
+                <div class="postinputcontainer">
+                    <textarea rows="3" placeholder="What's on your mind, Name?"></textarea>
+                    <div class="addpostlinks">
+                        <a href="#"><img src="https://img.icons8.com/?size=512&id=G4gLtGG8UKwZ&format=png"><b>Trending</b></a>
+                        <a href="#"><img src="https://img.icons8.com/?size=512&id=uNToIe0zQRBV&format=png"><b>Reels</b></a>
+                        <a href="#"><img src="https://img.icons8.com/?size=512&id=rCMgUHUAhuWi&format=png"><b>Games</b></a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="post-container">
+                <div class="post-row">
+                    <div class="userprofile">
+                        <img src="https://www.thetechedvocate.org/wp-content/uploads/2023/05/incognito.png">
+                        <div>
+                            <p> Dheemanth Divakar</p>
+                            <span> September 02 2023 10.00am</span>
+                        </div>
+                    </div>
+                    <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+
+                </div>
+                <p class="post-text"> Proud moment!! <span>Chandrayaan 3</span> successful<a href="#">
+                    #ISRO #NASA</a></p>
+            <img src="https://feeds.abplive.com/onecms/images/uploaded-images/2023/08/24/6bbe9067c94308145e4e80dc2d18164a1692859292871555_original.jpg" class="post-img">
+            <div class="post-row">
+                <div class="activity-icons">
+                    <div><img src="https://www.iconsdb.com/icons/preview/color/dc143c/heart-26-xxl.png"><b>200</b></div>
+                    <div><img src="https://www.iconsdb.com/icons/preview/color/dc143c/comments-xxl.png"><b>31</b></div>
+                    <div><img src="https://www.iconsdb.com/icons/preview/color/dc143c/sharethis-5-xxl.png"><b>15</b></div>
+
+                </div>
+                <div class="postprofileicon">
+                    <img src="https://www.thetechedvocate.org/wp-content/uploads/2023/05/incognito.png" alt=""> <i class="fa-solid fa-caret-down"></i>
+                </div>
+            </div>
+
+        </div>
+        <div class="post-container">
+            <div class="post-row">
+                <div class="userprofile">
+                    <img src="https://www.thetechedvocate.org/wp-content/uploads/2023/05/incognito.png">
+                    <div>
+                        <p> Dheemanth Divakar</p>
+                        <span> September 02 2023 10.00am</span>
+                    </div>
+                </div>
+                <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+
+            </div>
+
+                <p class="post-text"> Very talented <span>Physics faculty</span> of BMSCE<a
+                        href="#">
+                        #BMSCE</a></p>
+                <img src="https://scontent.fblr20-1.fna.fbcdn.net/v/t39.30808-6/369804595_122117332868008969_5528928902003357014_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=730e14&_nc_ohc=GaNiXutaAKoAX862iKr&_nc_ht=scontent.fblr20-1.fna&oh=00_AfBepvpcSlQruTCg4G0k9Cg6Q0AuVMWM6BVwNLJyoS8lrA&oe=64EEFD0F" class="post-img">
+                <div class="post-row">
+                    <div class="activity-icons">
+                        <div><img src="https://www.iconsdb.com/icons/preview/color/dc143c/heart-26-xxl.png"><b>200</b></div>
+                        <div><img src="https://www.iconsdb.com/icons/preview/color/dc143c/comments-xxl.png"><b>31</b></div>
+                        <div><img src="https://www.iconsdb.com/icons/preview/color/dc143c/sharethis-5-xxl.png"><b>15</b></div>
+
+                    </div>
+                    <div class="postprofileicon">
+                        <img src="https://www.thetechedvocate.org/wp-content/uploads/2023/05/incognito.png" alt=""> <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="post-container">
+                <div class="post-row">
+                    <div class="userprofile">
+                        <img src="https://www.thetechedvocate.org/wp-content/uploads/2023/05/incognito.png">
+                        <div>
+                            <p> Dheemanth Divakar</p>
+                            <span> September 02 2023 10.00am</span>
+                        </div>
+                    </div>
+                    <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+
+                </div>
+
+                <p class="post-text"> Youngest Scientist of India <span>Drone Prathap</span> here👍<a href="#">
+                        #drone #kaage</a></p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyfvNjVqP1a8XF3LN0lgyRkfb4xFgS_gJl1thT-kbncjFLi7PeEUbpCjfjWnIYm4FPvUQ&usqp=CAU" class="post-img">
+                <div class="post-row">
+                    <div class="activity-icons">
+                        <div><img src="https://www.iconsdb.com/icons/preview/color/dc143c/heart-26-xxl.png"><b>200</b></div>
+                        <div><img src="https://www.iconsdb.com/icons/preview/color/dc143c/comments-xxl.png"><b>31</b></div>
+                        <div><img src="https://www.iconsdb.com/icons/preview/color/dc143c/sharethis-5-xxl.png"><b>15</b></div>
+
+                    </div>
+                    <div class="postprofileicon">
+                        <img src="https://www.thetechedvocate.org/wp-content/uploads/2023/05/incognito.png" alt=""> <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                </div>
+
+            </div>
+            <div class="post-container">
+                <div class="post-row">
+                    <div class="userprofile">
+                        <img src="https://www.thetechedvocate.org/wp-content/uploads/2023/05/incognito.png">
+                        <div>
+                            <p> Dheemanth Divakar</p>
+                            <span> September 02 2023 10.00am</span>
+                        </div>
+                    </div>
+                    <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+
+                </div>
+
+                
+
+                <p class="post-text"> We will put <span>our photos</span> here👍<a href="#">
+                        #BMSCE CC</a></p>
+                <img src="images/feed-image-3.png" class="post-img">
+                <div class="post-row">
+                    <div class="activity-icons">
+                        <div><img src="https://www.iconsdb.com/icons/preview/color/dc143c/heart-26-xxl.png"><b>200</b></div>
+                        <div><img src="https://www.iconsdb.com/icons/preview/color/dc143c/comments-xxl.png"><b>31</b></div>
+                        <div><img src="https://www.iconsdb.com/icons/preview/color/dc143c/sharethis-5-xxl.png"><b>15</b></div>
+
+                    </div>
+                    <div class="postprofileicon">
+                        <img src="https://www.thetechedvocate.org/wp-content/uploads/2023/05/incognito.png" alt=""> <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                </div>
+
+            </div>
+            <div class="post-container">
+                <div class="post-row">
+                    <div class="userprofile">
+                        <img src="https://www.thetechedvocate.org/wp-content/uploads/2023/05/incognito.png">
+                        <div>
+                            <p> Dheemanth Divakar</p>
+                            <span> September 02 2023 10.00am</span>
+                        </div>
+                    </div>
+                    <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+
+                </div>
+
+                <p class="post-text"> We will put <span>our photos</span> here👍<a href="#">
+                        #BMSCE CC</a></p>
+                <img src="images/feed-image-4.png" class="post-img">
+                <div class="post-row">
+                    <div class="activity-icons">
+                        <div><img src="https://www.iconsdb.com/icons/preview/color/dc143c/heart-26-xxl.png"><b>200</b></div>
+                        <div><img src="https://www.iconsdb.com/icons/preview/color/dc143c/comments-xxl.png"><b>31</b></div>
+                        <div><img src="https://www.iconsdb.com/icons/preview/color/dc143c/sharethis-5-xxl.png"><b>15</b></div>
+
+                    </div>
+                    <div class="postprofileicon">
+                        <img src="https://www.thetechedvocate.org/wp-content/uploads/2023/05/incognito.png" alt=""> <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <button type="button" class="load-more-btn">Load More</button>
+
+
+
+
+        </div>
+        <!----------------rightsidebar -------------------->
+        <div class="rightsidebar">
+            <div class="sidebartitle">
+                <h4>Events</h4>
+                <a href="#">See All</a>
+            </div>
+
+            <div class="event">
+                <div class="leftevent">
+                    <h3>04</h3>
+                    <span>September</span>
+                </div>
+                <div class="rightevent">
+                    <h4>WEB AAT Submission</h4>
+                    <p><i class="fa-solid fa-location-dot" style="color: #dc143c;"></i > PG Block 6th floor</p>
+                    <a href="#">More Info</a>
+                </div>
+            </div>
+            <div class="event">
+                <div class="leftevent">
+                    <h3>29</h3>
+                    <span>September</span>
+                </div>
+                <div class="rightevent">
+                    <h4>Sem End Exam</h4>
+                    <p><i class="fa-solid fa-location-dot" style="color: #dc143c;"></i> PJ block @BMSCE</p>
+                    <a href="#">More Info</a>
+                </div>
+            </div>
+            <hr>
+
+            <div class="sidebartitle">
+                <h4>Advertisement</h4>
+                <a href="#">Close</a>
+            </div>
+            <img src="https://assets.isu.pub/document-structure/230531072424-93255a4f4f302001b9ee0a0feb303834/v1/fd71db92490758aa95c3b8da40b17ae5.jpeg" class="ads">
+            <hr>
+            <div class="sidebartitle">
+                <h4><b> <u>Friends Online</u></b></h4>
+                <a href="#"><b>Hide</b></a>
+            </div>
+
+            <div class="onlinelist">
+                <div class="online">
+                    <img src="images/member-1.png">
+                </div>
+                <p>Name 1</p>
+            </div>
+            <div class="onlinelist">
+                <div class="online">
+                    <img src="images/member-2.png">
+                </div>
+                <p>Name 2</p>
+            </div>
+            <div class="onlinelist">
+                <div class="online">
+                    <img src="images/member-3.png">
+                </div>
+                <p>Name 3</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <p>Copyright 2023 - Dheemanth.M and Divakar Babu, WEB AAT</p>
+    </div>
+    <script>
+        var settingsmenu = document.querySelector(".settings-menu");
+
+        function settingsMenuToggle() {
+            settingsmenu.classList.toggle("settings-menu-height");
+
+        }
+
+    </script>
+</body>
+
+</html>
